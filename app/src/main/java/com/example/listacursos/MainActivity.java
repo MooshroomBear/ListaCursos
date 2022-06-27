@@ -12,12 +12,13 @@ import androidx.wear.widget.WearableRecyclerView;
 import com.example.listacursos.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
     private ActivityMainBinding binding;
 
-    private List <ItemList>items=new ArrayList<>();
+    private List<ItemList> items=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,16 @@ public class MainActivity extends Activity {
         linearLayoutManager.setOrientation(WearableLinearLayoutManager.VERTICAL);
         linearLayoutManager.setLayoutCallback(new CustomScrollingLayoutCallback());
 
+        items.add(new ItemList(R.drawable.flutter,"Flutter","Curso de flutter"));
+        items.add(new ItemList(R.drawable.java,"Java","Curso de java"));
+        items.add(new ItemList(R.drawable.php,"PHP","Curso de php"));
+        items.add(new ItemList(R.drawable.javascript,"JavaScript","Curso de javascript"));
+        items.add(new ItemList(R.drawable.cplus,"C#","Curso de c#"));
+
         //binding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(binding.getRoot());
 
+        //Items
 
     }
 }
@@ -55,3 +63,20 @@ class CustomScrollingLayoutCallback extends WearableLinearLayoutManager.LayoutCa
         child.setScaleY(1-progressToCenter);
     }
 }
+
+class ItemList{
+    final private int imageItem;
+    final private String nameItem;
+    final private String description;
+    public ItemList(int _imageItem,String _nameItem,String _description){
+        this.imageItem=_imageItem;
+        this.nameItem=_nameItem;
+        this.description=_description;
+    }
+    public int getImageItem(){return imageItem;}
+    public String getNameItem(){return nameItem;}
+    public String getDescription(){return description;}
+}//close ItemList
+
+
+
